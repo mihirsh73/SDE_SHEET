@@ -1,0 +1,85 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head==NULL)
+        {
+            return NULL;
+        }
+        ListNode* curr=head;
+        ListNode *prev=head;
+        int count=1;
+        while(curr->next!=NULL)
+        {
+            curr=curr->next;
+            count++;
+            
+        }
+        if(count==1)
+        {
+            return head;
+        }
+        k=k%count;
+        
+        
+        /*while(k!=0)
+        {
+            curr=head;
+            prev=NULL;
+            while(curr->next!=NULL)        // TC O(n-1*n)
+            {
+                prev=curr;
+                curr=curr->next;
+            }
+            prev->next=NULL;
+            curr->next=head;
+            head=curr;
+            k--;
+        }
+        return head;*/
+        /*curr=head;
+        count=count-k;
+        while(count!=0)
+        {
+            count--;
+            prev=curr;
+            curr=curr->next;
+        }
+        if(curr==NULL)
+        {
+            return head;
+        }
+        ListNode* kth=curr;
+        prev->next=NULL;                 TC O(N) SC O(1)
+        while(curr->next!=NULL)
+        {
+            curr=curr->next;
+        }
+        curr->next=head;
+        head=kth;
+        return head;*/
+        k=count-k;
+            curr->next=head;
+        while(k!=0)
+        {
+            k--;
+            curr=curr->next;
+        }
+        head=curr->next;
+        curr->next=NULL;
+        return head;
+        
+        
+        
+        
+    }
+};
