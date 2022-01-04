@@ -1,0 +1,22 @@
+ int maxMeetings(int start[], int end[], int n)
+    {
+        pair<int,int> a[n];
+        for(int i=0; i<n; i++)
+        {
+            a[i].first= end[i];
+            a[i].second=start[i];
+        }
+        sort(a,a+n);
+        int count=1;
+        int limit= a[0].first;
+        for(int i=1; i<n; i++)
+        {
+            if(a[i].second>limit)
+            {
+                count++;
+                limit=a[i].first;
+            }
+        }
+        return count;
+        
+    }
