@@ -1,0 +1,18 @@
+nt singleNonDuplicate(vector<int>& nums) {
+        // brute force approach is take map and maintain the count and return the number having a count 1;
+        int l=0;
+        int r= nums.size()-1;
+        while(l<r)
+        {
+            int mid = (l+r)/2;
+            if((mid%2==0 && nums[mid]==nums[mid+1]) || (mid%2!=0 && nums[mid]==nums[mid-1]))  // means element present on the right;
+            {
+                l=mid+1;
+            }
+            else{
+                r=mid;             // element present on the left;
+            }
+        }
+        return nums[l];
+        
+    }
