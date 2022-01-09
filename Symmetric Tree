@@ -1,0 +1,80 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool symmetry(TreeNode* root1, TreeNode* root2)
+    {
+        if(root1==NULL && root2==NULL)
+        {                                             // recursive approach 
+            return true;
+        }
+        if(root1!=NULL && root2!=NULL && root1->val==root2->val)
+        {
+            return symmetry(root1->left,root2->right) && symmetry(root1->right,root2->left);
+        }
+        return false;
+    }
+    void find1(TreeNode* root, vector<int> &q2)
+    {
+        if(root==NULL)
+        {
+            q2.push_back(11110);
+            return;
+        }                                            //recursive approach with vector
+        q2.push_back(root->val);                          // root,right,left
+        find1(root->right,q2);                    
+        find1(root->left,q2);
+        
+    }
+void find(TreeNode* root, vector<int> &q1)
+    {
+        if(root==NULL)
+        {
+            q1.push_back(11110);
+            return ;
+        }
+        q1.push_back(root->val);
+        find(root->left,q1);                              // root, left,right
+        find(root->right,q1);
+        
+    }
+    bool isSymmetric(TreeNode* root) {
+        vector<int> q1;
+        vector<int> q2;
+        find(root->left,q1);
+        find1(root->right,q2);
+        if(q1.size()!=q2.size())
+        {
+            return false;
+        }
+        for(int i=0; i<q1.size(); i++)
+        {
+            cout<<q1[i]<<" ";
+        }
+        cout<<endl;
+        for(int i=0; i<q1.size(); i++)
+        {
+            cout<<q2[i]<<" ";
+        }
+        cout<<endl;
+        for(int i=0; i<q1.size(); i++)
+        {
+            
+            if(q1[i]!=q2[i])
+            {
+                return false;
+            }
+        }
+        return true;
+        /*return symmetry;*/
+    }
+};
