@@ -41,3 +41,7 @@ public:
         
     }
 };
+// Time Complexity: O(min(log m, log n)). 
+In each step one half of each array is discarded. So the algorithm takes O(min(log m, log n)) time to reach the median value.
+Space Complexity: O(1). 
+No extra space is required.
