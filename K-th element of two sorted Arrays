@@ -10,7 +10,7 @@ int kthElement(int arr1[], int arr2[], int n, int m, int k)
       {
           int mid=(l+r)/2;
           int mid2= k-mid;
-          int l1 = mid==0?INT_MIN:arr1[mid-1];                                 // TC O(log(min(n,k))
+          int l1 = mid==0?INT_MIN:arr1[mid-1];                                 // TC O(log(min(n,m))
           int h1= mid==n?INT_MAX:arr1[mid];
           int l2= mid2==0?INT_MIN:arr2[mid2-1];
           int h2=mid2==m?INT_MAX:arr2[mid2];
