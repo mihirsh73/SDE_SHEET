@@ -6,7 +6,7 @@ int r=matrix.size(),c=matrix[0].size();
         mx=max(mx,matrix[i][c-1]);
     }
     int des=(r*c+1)/2;
-    while(mn<mx)
+    while(mn<mx)                                                   //O(32 * r * log(c)). The upper bound function will take log(c) time and is performed for each row. And since the numbers will be max of 32 bit
     {
         int mid=mn+(mx-mn)/2;
         int place=0;
