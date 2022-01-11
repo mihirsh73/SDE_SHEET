@@ -1,10 +1,10 @@
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
-        int leftmin[heights.size()];   //leftwall
+        /*int leftmin[heights.size()];   //leftwall
         int rightmin[heights.size()]; // rightwall
         stack<int> st;
-        for(int i=0; i<heights.size(); i++)                         // TC O(N) SC O(N)
+        for(int i=0; i<heights.size(); i++)                         // TC O(3N) SC O(3N)
         {
             while(st.empty()==false && heights[st.top()]>=heights[i])
             {
@@ -42,6 +42,34 @@ public:
         for(int i=0; i<heights.size(); i++)
         {
             ans = max(ans,(rightmin[i]-leftmin[i]+1)*heights[i]);
+        }
+        return ans;*/
+        int leftmin[heights.size()];
+        stack<int> st;
+        int ans=0;
+        
+        for(int i=0; i<=heights.size(); i++)
+        {
+            int area;
+            while(st.empty()==false &&(i==heights.size() ||  heights[st.top()]>=heights[i]))   // if some smaller height occur than pop 
+            {                                                                                             // TC O(N) SC O(N)
+                int t = heights[st.top()];
+                st.pop();
+                int width;
+                if(st.empty()==true)
+                {                                                                                  // right wall = i;
+                                                                                                   // left wall = second st.top()
+                    width=i;                                                                       // height = st.top()
+                }
+                else{
+                    width= i-st.top()-1;
+                }
+                area = t*width;
+                ans = max(ans,area);
+            }
+            
+                st.push(i);                                          // fill up the stack in linearly increasing with height and push thw index
+            
         }
         return ans;
         
